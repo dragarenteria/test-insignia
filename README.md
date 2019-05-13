@@ -3,7 +3,7 @@
 
 En el proyecto se evidencian todos los requerimientos.
 
-Para que funcione el <strong> ¿olvidó su contraseña? </strong>, se deben configurar los datos de email en el .env
+Para que funcione el <strong> ¿olvidó su contraseña? </strong>, se deben configurar los datos de email como está en el .env.example
 
 ### Modulo de usuario
 - Cabe destacar que en el modulo usuarios, solo dejé la opcion de insertar usuarios, 
