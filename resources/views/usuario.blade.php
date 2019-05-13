@@ -17,7 +17,7 @@
                                 <th>Correo electronico</th>
                                 <th>Fecha de creación</th>
                                 <th>Ultima modificacion</th>
-                                {{-- <th>Opciones</th> --}}
+                                <th>Opciones</th>
                             </thead>
     
                         </table>
@@ -70,6 +70,51 @@
             </div>
         </div>
     </form>
+
+     {{-- modal editar usuario --}}
+     <form @submit.prevent="editarUsuario()" class="modal fade" id="editar_usuario" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title text-center">Editar usuario</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 <div class="row">
+                     <div class="form-group col-md-12">
+                         <label for="exampleInputEmail1">Nombre<span class="text-danger">*</span></label>
+                         <input v-model="usuarioEdit.name" type="text" required class="form-control"
+                             placeholder="Nombre">
+                     </div>
+                     <div class="form-group col-md-12">
+                         <label for="exampleInputEmail1">Correo electronico <span class="text-danger">*</span></label>
+                         <input v-model="usuarioEdit.email" type="email" required class="form-control"
+                             placeholder="Correo electronico">
+                     </div>
+                     {{-- <div class="form-group col-md-6">
+                         <label for="exampleInputEmail1">Contraseña <span class="text-danger">*</span></label>
+                         <input v-model="usuarioEdit.password" type="password" required class="form-control"
+                             placeholder="Contraseña">
+                     </div> --}}
+                     {{-- <div class="form-group col-md-6">
+                         <label for="exampleInputEmail1">Confirmar contraseña <span class="text-danger">*</span></label>
+                         <input v-model="usuario.c_password" type="password" required class="form-control"
+                             placeholder="Confirmar contraseña ">
+                     </div> --}}
+                    
+                 </div>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                 <button type="submit" class="btn btn-primary">Editar</button>
+             </div>
+         </div>
+     </div>
+ </form>
+
 </div>
 @endsection
 @section('script')

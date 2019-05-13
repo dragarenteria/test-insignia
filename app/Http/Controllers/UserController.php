@@ -98,4 +98,58 @@ class UserController extends Controller
     public function getReset(){
         return view('auth.passwords.reset');
     }
+
+    public function editar(Request $request){
+        $validator = Validator::make($request->all(), [ //creamos la validación
+            'name' => 'required', 
+            'email' => 'required|email|unique:users,email,'.$request->id,
+        ]);
+        if ($validator->fails()) {//validamos
+            return response()->json(['error'=>$validator->errors()]);
+        }
+
+        $success = '';
+        
+        DB::beginTransaction();
+        try {
+            User::where('id',$request->id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+            DB::commit();
+            $success = true;
+        } catch (\Throwable $th) {
+            $success = false;
+            DB::rollBack();
+            $error = $th->getMessage();
+        }
+
+        if ($success) {
+            return ['status' => true];
+        }else{
+            return ['status' => false, 'error' => $error];
+        }
+    }
+
+    public function eliminar($id){
+       
+        $success = '';
+        
+        DB::beginTransaction();
+        try {
+            User::where('id',$id)->delete();
+            DB::commit();
+            $success = true;
+        } catch (\Throwable $th) {
+            $success = false;
+            DB::rollBack();
+            $error = $th->getMessage();
+        }
+
+        if ($success) {
+            return ['status' => true];
+        }else{
+            return ['status' => false, 'error' => $error];
+        }
+    }
 }
